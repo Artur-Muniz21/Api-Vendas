@@ -1,13 +1,14 @@
 package com.stefanini.course.services;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.stefanini.course.dto.GetUser;
 import com.stefanini.course.entities.User;
 import com.stefanini.course.repositories.UserRepository;
 import com.stefanini.course.services.exceptions.DatabaseException;
@@ -22,13 +23,17 @@ public class UserService {
 	private UserRepository repository;
 	
 	public List<User> findAll(){
-		return repository.findAll();
+		
+		List<User> entity = repository.findAll();		
+		return entity;
 	}
 	
 	public User findById(Long id) {
-		Optional<User> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(id)); // caso n encontre lança uma exceção
+	    User obj = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+	    
+	    return obj;
 	}
+
 	
 	public User insert(User obj) {
 	

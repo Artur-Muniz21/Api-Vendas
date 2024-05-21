@@ -16,7 +16,8 @@ public class OrderService {
 	private OrderRepository repository;
 	
 	public List<Order> findAll(){
-		return repository.findAll();
+		List<Order> list = repository.findAll();
+		return list;
 	}
 	
 	public Order findById(Long id) {

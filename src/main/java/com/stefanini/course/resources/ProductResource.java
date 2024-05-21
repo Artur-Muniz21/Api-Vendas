@@ -1,15 +1,15 @@
 package com.stefanini.course.resources;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stefanini.course.entities.Product;
+import com.stefanini.course.dto.GetProduct;
 import com.stefanini.course.services.ProductService;
 
 @RestController
@@ -20,15 +20,19 @@ public class ProductResource {
 	private ProductService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Product>> findAll(){
-		List<Product> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+	public List<GetProduct> findAll(){
+
+		List<GetProduct> list = service.findAll().stream()
+				.map(GetProduct::new) //
+				.collect(Collectors.toList());
+		
+		return list;
 	}
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Product> findById(@PathVariable Long id) {
-		 Product obj = service.findById(id);
-		 return ResponseEntity.ok().body(obj);
+	@GetMapping(value = "{id}")
+	public GetProduct findById(@PathVariable Long id) {
+		 GetProduct obj = new GetProduct(service.findById(id));
+		 return obj;
 	}
 	
 }
