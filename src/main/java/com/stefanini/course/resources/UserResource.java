@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +23,11 @@ import com.stefanini.course.dto.response.UserResponse;
 import com.stefanini.course.entities.User;
 import com.stefanini.course.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/users")
+@Validated
 public class UserResource {
 	
 	@Autowired
@@ -48,9 +52,9 @@ public class UserResource {
 		return dto;
 	}
 	
-	//é necessário criar um objeto 
+	//@Valid permite efetuar as validações 
 	@PostMapping
-	public ResponseEntity<UserResponse> insert(@RequestBody PostUser obj){
+	public ResponseEntity<UserResponse> insert(@Valid @RequestBody PostUser obj){
 		User user = obj.toUser();
 		user = service.insert(user);
 		UserResponse userResponse = new UserResponse(user);
@@ -65,7 +69,7 @@ public class UserResource {
 	}
 	
 	@PutMapping(value = "{id}")
-	public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody PutUser  obj){
+	public ResponseEntity<UserResponse> update(@PathVariable Long id, @Valid @RequestBody PutUser  obj){
 		User user = obj.toUser();
 		user = service.update(id, user);
 		UserResponse userResponse = new UserResponse(user);

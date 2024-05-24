@@ -4,13 +4,24 @@ import java.io.Serializable;
 
 import com.stefanini.course.entities.User;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class PutUser implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	private Long id;
+
 	private String name;
+	
+	@Email(message = "O email deve ser válido!")
 	private String email;
+	
 	private String phone;
+	
+	//validação de regras da senha
+	@Size(min = 8, message = "A senha deve conter 8 caracteres")
 	private String password;
 
 	
@@ -19,7 +30,6 @@ public class PutUser implements Serializable {
 	}
 
 	public PutUser(Long id, String name, String email, String phone, String password) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;

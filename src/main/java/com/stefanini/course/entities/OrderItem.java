@@ -33,6 +33,15 @@ public class OrderItem implements Serializable{
 	}
 	
 	@JsonIgnore
+	public OrderItemPK getId() {
+		return id;
+	}
+
+	public void setId(OrderItemPK id) {
+		this.id = id;
+	}
+
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}

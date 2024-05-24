@@ -22,18 +22,6 @@ public class UserResponse implements Serializable {
 		email = user.getEmail();
 		phone = user.getPhone();
 	}
-	
-	public UserResponse(Long id, String name, String email, String phone) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-	}
-
-	public static UserResponse toResponseUsuario(User usuario) { // convertendo usuarioDto em um obj usuario
-		return new UserResponse(usuario.getId(), usuario.getName(), usuario.getEmail(), usuario.getPhone());
-	}
 
 	public Long getId() {
 		return id;
