@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stefanini.course.dto.GetProduct;
+import com.stefanini.course.resources.openApi.ProductResourceOpenApi;
 import com.stefanini.course.services.ProductService;
 
 @RestController
 @RequestMapping(value = "/products")
-public class ProductResource {
+public class ProductResource implements ProductResourceOpenApi{
 	
 	@Autowired
 	private ProductService service;

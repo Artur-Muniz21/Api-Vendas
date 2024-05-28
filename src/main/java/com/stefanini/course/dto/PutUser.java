@@ -5,14 +5,11 @@ import java.io.Serializable;
 import com.stefanini.course.entities.User;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class PutUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
-
 	private String name;
 	
 	@Email(message = "O email deve ser válido!")
@@ -29,8 +26,7 @@ public class PutUser implements Serializable {
 		
 	}
 
-	public PutUser(Long id, String name, String email, String phone, String password) {
-		this.id = id;
+	public PutUser(String name, String email, String phone, String password) {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
@@ -39,14 +35,6 @@ public class PutUser implements Serializable {
 	
 	public User toUser() {
 		return new User(null, this.name, this.email, this.phone, this.password);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {

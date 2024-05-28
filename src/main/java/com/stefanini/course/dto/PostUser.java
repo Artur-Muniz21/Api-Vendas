@@ -13,8 +13,6 @@ import jakarta.validation.constraints.Size;
 @Component
 public class PostUser implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private Long id;
 	
 	@NotBlank(message = "Nome obrigatório")
 	private String name;
@@ -35,8 +33,7 @@ public class PostUser implements Serializable {
 		
 	}
 	
-	public PostUser(Long id, String name, String email, String phone, String password) {
-		this.id = id;
+	public PostUser(String name, String email, String phone, String password) {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
@@ -45,14 +42,6 @@ public class PostUser implements Serializable {
 	
 	public User toUser() {
 		return new User(null, this.name, this.email, this.phone, this.password);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -86,7 +75,4 @@ public class PostUser implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
-
 }

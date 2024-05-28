@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.stefanini.course.entities.LoginUser;
+import com.stefanini.course.resources.openApi.LoginUserResourceOpenApi;
 import com.stefanini.course.services.LoginUserService;
 
 @RestController
 @RequestMapping(value = "/login")
-public class LoginUserResource {
+public class LoginUserResource implements LoginUserResourceOpenApi{
 
 	@Autowired
 	private LoginUserService service;

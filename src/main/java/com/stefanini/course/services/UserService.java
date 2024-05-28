@@ -1,7 +1,6 @@
 package com.stefanini.course.services;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -39,25 +38,23 @@ public class UserService {
 
 	public User insert(User obj) {
 
-		try {
-			boolean userEmail = repository.existsByEmail(obj.getEmail());
+		boolean userEmail = repository.existsByEmail(obj.getEmail());
 
-			if (userEmail) {
-				throw new DatabaseException("Email já cadastrado!");
-			}
-
-			String encodePassword = passwordEncoder.encode(obj.getPassword());
-			obj.setPassword(encodePassword);
-
-			return repository.save(obj);
-
-		} catch (DataIntegrityViolationException e) {
-			throw new DatabaseException("Data integrity violation: " + e.getMessage());
+		if (userEmail) {
+			throw new DatabaseException("Email já cadastrado!");
 		}
+
+		String encodePassword = passwordEncoder.encode(obj.getPassword());
+		obj.setPassword(encodePassword);
+
+		return repository.save(obj);
+
 	}
 
 	public void delete(Long id) {
 		try {
+			
+			repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 
 			repository.deleteById(id);
 
@@ -77,23 +74,26 @@ public class UserService {
 
 	public User update(Long id, User obj) {
 		try {
+			repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+			
 			User entity = repository.getReferenceById(id); // deixa um obk monitorado pelo JPA para depois efetuar uma
-														
-	        if (obj.getName() != null) {
-	            entity.setName(obj.getName());
-	        }
 
-	        if (obj.getEmail() != null) {
-	            entity.setEmail(obj.getEmail());
-	        }
+			if (obj.getName() != null) {
+				entity.setName(obj.getName());
+			}
 
-	        if (obj.getPhone() != null) {
-	            entity.setPhone(obj.getPhone());
-	        }
+			if (obj.getEmail() != null) {
+				entity.setEmail(obj.getEmail());
+			}
 
-	        if (obj.getPassword() != null) {
-	            entity.setPassword(passwordEncoder.encode(obj.getPassword()));
-	        }
+			if (obj.getPhone() != null) {
+				entity.setPhone(obj.getPhone());
+			}
+
+			if (obj.getPassword() != null) {
+				entity.setPassword(passwordEncoder.encode(obj.getPassword()));
+			}
+
 			return repository.save(entity);
 
 		} catch (EntityNotFoundException e) {

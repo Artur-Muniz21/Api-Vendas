@@ -21,6 +21,7 @@ import com.stefanini.course.dto.PostUser;
 import com.stefanini.course.dto.PutUser;
 import com.stefanini.course.dto.response.UserResponse;
 import com.stefanini.course.entities.User;
+import com.stefanini.course.resources.openApi.UserResourcerOpenApi;
 import com.stefanini.course.services.UserService;
 
 import jakarta.validation.Valid;
@@ -28,7 +29,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "/users")
 @Validated
-public class UserResource {
+public class UserResource implements UserResourcerOpenApi{
 	
 	@Autowired
 	private UserService service;
@@ -45,7 +46,8 @@ public class UserResource {
 		return list;
 	}
 	
-	@GetMapping(value = "{id}")
+	//value é padrao
+	@GetMapping("{id}")
 	public GetUser findById(@PathVariable Long id) {
 		User obj = service.findById(id);
 		GetUser dto = new GetUser(obj);

@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stefanini.course.entities.OrderItem;
+import com.stefanini.course.resources.openApi.OrderItemResourceOpenApi;
 import com.stefanini.course.services.OrderItemService;
 
 @RestController
 @RequestMapping(value = "/orderItens")
-public class OrderItemResource {
+public class OrderItemResource implements OrderItemResourceOpenApi{
 	
 	@Autowired
 	private OrderItemService service;

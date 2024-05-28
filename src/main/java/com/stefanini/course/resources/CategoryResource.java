@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stefanini.course.dto.GetCategory;
+import com.stefanini.course.resources.openApi.CategoryResourceOpenApi;
 import com.stefanini.course.services.CategoryService;
 
 @RestController
 @RequestMapping(value = "/categories")
-public class CategoryResource {
+public class CategoryResource implements CategoryResourceOpenApi{
 	
 	@Autowired
 	private CategoryService service;

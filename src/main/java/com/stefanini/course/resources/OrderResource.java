@@ -17,11 +17,12 @@ import com.stefanini.course.dto.GetOrder;
 import com.stefanini.course.dto.PostOrder;
 import com.stefanini.course.dto.response.OrderResponse;
 import com.stefanini.course.entities.Order;
+import com.stefanini.course.resources.openApi.OrderResourceOpenApi;
 import com.stefanini.course.services.OrderService;
 
 @RestController
 @RequestMapping(value = "/orders")
-public class OrderResource {
+public class OrderResource implements OrderResourceOpenApi{
 	
 	@Autowired
 	private OrderService service;
