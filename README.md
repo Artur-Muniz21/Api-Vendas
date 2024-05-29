@@ -8,7 +8,7 @@ Concluído 🎉
 
 ### 🧩Features
 
-- [x]Cadastro de clientes
+- [x] Cadastro de clientes
 - [x]Listagem de clientes
 - [x]Busca de clientes por ID
 - [x]Atualização de clientes
