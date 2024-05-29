@@ -2,12 +2,12 @@
 
 Este projeto é um exemplo de aplicação desenvolvida com SpringBoot 3 e Java 17. Ele demonstra a criação de uma API RESTful para gerenciar vendas de produtos, incluindo endpoints para operações CRUD (Create, Read, Update, Delete). Os testes foram realizados utilizando Postman e Swagger.
 
-## ✅Status
+## 🟢 Status
 
 Concluído 🎉
 
 
-## 🧩Features
+## 🧩 Features
 
 - [x] Cadastro de clientes
 - [x] Listagem de clientes
@@ -35,3 +35,28 @@ Concluído 🎉
 
 
 ## 📋 Pré-requisitos
+
+Instalar o Java 17
+```
+https://www.oracle.com/java/technologies/downloads/#java17
+```
+Instalar o Spring Tool Suite 4
+```
+https://spring.io/tools
+```
+Instalar o git
+```
+https://git-scm.com/downloads
+```
+Clonar o repositório pelo git bash
+```
+git clone https://github.com/Artur-Muniz21/Api-Vendas.git
+```
+
+## 🤖 Tecnologias utilizadas
+- [x] Java 17
+- [x] Maven 
+- [x] Spring Boot 3
+- [x] Swagger
+- [x] Postman
+- [x] Spring Tools 4
